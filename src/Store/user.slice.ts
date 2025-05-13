@@ -156,9 +156,35 @@ export const handleGetSeo = createAsyncThunk("auth/handleGetSeo", async ({id}:{
     }
 });
 
-export const handleSubscribe = createAsyncThunk("auth/handleSubscribe", async (email: string) => {
+export const handleSubscribe = createAsyncThunk("auth/handleSubscribe", async ({
+    email,
+    reportSources,
+    geographicalScope,
+    reportCategories,
+    aiSummaries,
+    userType,
+    additionalPreferences,
+    subscriptionFrequency
+}:{
+    email: string,
+    reportSources?: string,
+    geographicalScope?: string,
+    reportCategories?: string[],
+    aiSummaries?: boolean,
+    userType?: string,
+    additionalPreferences?: string,
+    subscriptionFrequency?: string
+}) => {
     try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/news-email/createNewsEmail`, { email });
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/news-email/createNewsEmail`, { email,
+            reportSources,
+            geographicalScope,
+            reportCategories,
+            aiSummaries,
+            userType,
+            additionalPreferences,
+            subscriptionFrequency });
+        console.log(response)
         return response.data;
     } catch (error) {
         const err = error as ApiErrorResponse;
@@ -310,7 +336,7 @@ const userSlice = createSlice({
         //^ handleSubscribe
         builder.addCase(handleSubscribe.fulfilled, (state, action) => {
             state.loading = false;
-            state.user = action.payload.userData;
+            console.log(action.payload);
         });
         builder.addCase(handleSubscribe.rejected, (state) => {
             state.loading = false;

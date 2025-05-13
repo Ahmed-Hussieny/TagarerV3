@@ -39,11 +39,13 @@ export function FooterC() {
     const handleSubscription = async (values: SubscriptionFormValues, { resetForm }: any) => {
         try {
             // Replace with your actual API endpoint
-            const data = await dispatch(handleSubscribe(values.email))
+            const data = await dispatch(handleSubscribe({
+                email: values.email,
+            }))
             if (data.payload.success) {
                 toast.success('تم الاشتراك بنجاح!');
                 resetForm();
-                navigate('/thankYou');
+                navigate(`/subscribe/${values.email}`);
             }
         } catch (error) {
             toast.error('حدث خطأ أثناء الاشتراك. يرجى المحاولة مرة أخرى.');
@@ -60,8 +62,8 @@ export function FooterC() {
                         <img className="w-32" src={logo} alt="logo" />
                         <p className="mt-4 text-sm">تقارير هي منصة تجمع التقارير والدراسات الرسمية في السعودية، مما يتيح للمستخدمين البحث، الاطلاع، وتحميلها بسهولة من مصادر موثوقة.</p>
                         <div className="mt-4">
-                          <h1 className="text-white text-xl my-2 font-bold">الاشتراك</h1>
-                          <p className="text-white text-sm">تقارير - كل جديد في بريد.</p>
+                          {/* <h1 className="text-white text-xl my-2 font-bold">الاشتراك</h1> */}
+                          <p className="text-white text-sm">اشترك بالنشرة الدورية لمنصة تقارير، وكن على علم بأحدث التقارير المميزة.</p>
                           <Formik
                             initialValues={{ email: '' }}
                             validationSchema={subscriptionSchema}
@@ -82,7 +84,7 @@ export function FooterC() {
                                   disabled={isSubmitting}
                                   className="bg-dark_color text-white p-2 rounded-md ms-2"
                                 >
-                                  {isSubmitting ? 'جاري الاشتراك...' : 'الاشتراك'}
+                                  {isSubmitting ? 'جاري الانضمام...' : 'انضمام'}
                                 </button>
                               </Form>
                             )}

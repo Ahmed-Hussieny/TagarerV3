@@ -21,6 +21,7 @@ import ArticleItem from './pages/Articles/Article';
 import { useLayoutEffect } from 'react';
 import VerifyEmail from './pages/Auth/VerifyEmail';
 import ThankYou from './pages/ThankYou/ThankYou';
+import Subscribe from './pages/Subscribe/Subscribe';
 
 function App() {
   useLayoutEffect(() => {
@@ -51,6 +52,7 @@ function App() {
       {path: '/termsAndConditions', element: <TermsAndConditions />},
       {path: 'Article/:articleId/:articleName',element: <ArticleItem />},
       {path: '/thankYou', element: <ThankYou />},
+      {path: '/subscribe/:email', element: <Subscribe />},
     ]},
   ]);
   return (

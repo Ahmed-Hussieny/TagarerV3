@@ -30,7 +30,7 @@ const ThankYou = () => {
                 </svg>
             </div>
             <h1 style={{ fontSize: '3rem', fontWeight: 'bold', margin: 0 }}>شكرًا لك!</h1>
-            <p style={{ fontSize: '1.5rem', margin: '20px 0 40px 0' }}>شكرًا لك لاهتمامك بجريد، تم التسجيل بنجاح.</p>
+            <p style={{ fontSize: '1.5rem', margin: '20px 0 40px 0' }}>شكرًا لك لاهتمامك بتقارير ، تم التسجيل بنجاح.</p>
             <button
             className='bg-main_color text-white p-2 rounded-md w-64 py-4 '
             onClick={() => window.location.href = '/'}
